@@ -19,4 +19,19 @@ def daily_operations():
         print('Executing daily productions')
     else:
         print('Daily productions have not started yet')
+        
+# Working hours are 9-5, Need to use accumulator 
+    for i in range(1,10):
+        print(i)   
+'''
+1 = 9am
+2 = 10am
+3 = 11am
+4 = 12pm
+5 = 1pm
+6 = 2pm
+7 = 3pm
+8 = 4pm
+9 = 5pm
+'''
 daily_operations()
