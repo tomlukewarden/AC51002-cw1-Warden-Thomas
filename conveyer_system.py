@@ -1,8 +1,14 @@
 # Start daily production
 def daily_operations():
     def production_start(): 
-        start = input("Good Morning! Would you like to start the production for today? ")
-
+        time = int(input('What time is it? '))
+        
+        if time >= 9 and time <= 17:
+            # name = input('Enter your name to set up the productions ')
+            start = input("Welcome Back! Would you like to start the production for today? ")
+        else:
+            print('It is not the correct time to start these productions, please come back between 9am and 5pm')
+            exit()
         # Check for valid start responses
         if start.lower() in ["yes", "y"]:
             print("Production has begun.")
@@ -20,18 +26,18 @@ def daily_operations():
     else:
         print('Daily productions have not started yet')
         
-# Working hours are 9-5, Need to use accumulator 
-    for i in range(1,10):
-        print(i)   
+
 '''
-1 = 9am
-2 = 10am
-3 = 11am
-4 = 12pm
-5 = 1pm
-6 = 2pm
-7 = 3pm
-8 = 4pm
-9 = 5pm
+    
+
+index 10 = 9am
+index 11 = 10am
+index 12 = 11am
+index 13 = 12pm
+index 14 = 1pm
+index 15 = 2pm
+index 16 = 3pm
+index 17 = 4pm
+index 18 = 5pm
 '''
 daily_operations()
