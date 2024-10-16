@@ -1,25 +1,22 @@
-# Start daily productions
+# Start daily production
+def daily_operations():
+    def production_start(): 
+        start = input("Good Morning! Would you like to start the production for today? ")
 
-
-def production_start():  # function to recall the production start
-    print("Good Morning")
-    start = input("Would you like to start the productions for today? ")
-    if (
-    start == "yes" # Thinking of all valid options
-    or start == "Yes"
-    or start == "y"
-    or start == "Y"
-):
-        print("Production has begun.")
-    elif(
-        start == 'no'
-        or start == 'No'
-        or start == 'n'
-        or start == 'N'
-    ):
-        print("Production will not start.")
-    else: # Error handling
-        print('This is not the correct input')
-        print('Please input Yes or No')
-
-production_start()
+        # Check for valid start responses
+        if start.lower() in ["yes", "y"]:
+            print("Production has begun.")
+            return True
+        elif start.lower() in ["no", "n"]:
+            print("Production will not start.")
+            return False
+        else:  # Error handling
+            print("This is not the correct input.")
+            print("Please input Yes or No.")
+            return production_start()
+    
+    if production_start():
+        print('Executing daily productions')
+    else:
+        print('Daily productions have not started yet')
+daily_operations()
