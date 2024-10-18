@@ -1,0 +1,18 @@
+Total Operating Hours: 1
+Hour 1 produced 82 items 
+Total Operating Hours: 2
+Hour 2 produced 79 items 
+Total Operating Hours: 3
+Hour 3 produced 85 items 
+Total Operating Hours: 4
+Hour 4 produced 88 items 
+Total Operating Hours: 5
+Hour 5 produced 90 items 
+Total Operating Hours: 6
+Hour 6 produced 85 items 
+Total Operating Hours: 7
+Hour 7 produced 83 items 
+Total Operating Hours: 8
+Hour 8 produced 96 items 
+Total Operating Hours: 8
+Hour 8 produced 96 items 
