@@ -39,7 +39,7 @@ DundeeZest has tasked you with developing a **prototype Python software system**
 4. At the end of each day, it should update the total operating hours and store the updated value
    in the .txt file in requirement 3 above. [X]
 5. Include in the software a set value for the number of items that can be produced in an hour (e.g.,
-   100 items/hour). This could be a fixed value.
+   100 items/hour). This could be a fixed value. [X]
 6. The software should be able to store the total number of items produced either in the .txt file in
    requirement 3 above or a separate file and retrieve the value at the start of the next day’s
    operation.
