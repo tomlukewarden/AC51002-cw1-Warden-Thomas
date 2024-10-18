@@ -3,13 +3,17 @@ import random
 
 # Start daily production
 def daily_operations():
+    # Will be adding a better/more secure way to this
     name = input("Enter your Name ")
     date = input("Enter the Date ")
 
+    # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
+        # Printing report
         print(f"Here's yesterdays report: {prev_report}")
 
+    # Function of the start of productions
     def production_start():
         start = input(
             "Welcome Back! Would you like to start the production for today? "
@@ -36,22 +40,30 @@ def daily_operations():
             for hour in range(9, 18):
                 # Maximum number of items produced an hour will be 100 items
                 if hour < 17:
+                    # Working hours increase by 1 each loop round
                     working_hours += 1
-                    items_per_hour = random.randrange(75, 100)
-                    total_items_produced += items_per_hour
+                    items_per_hour = random.randrange(
+                        75, 100
+                    )  # Items increase by a random number between 75 and 100
+                    total_items_produced += (
+                        items_per_hour  # Total of Items updates every hour
+                    )
+                # Adding these to the text file
                 hours_file.write(f"Total Operating Hours: {working_hours}\n")
                 hours_file.write(
                     f"Hour {working_hours} produced {items_per_hour} items \n"
                 )
-                hours_file.write(f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items")
+                hours_file.write(
+                    f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
+                )
     else:
         print("Daily productions have not started yet")
 
     def end_of_day():
-        
+        # Opening text file to collect final report
         with open("./files/hours.txt", "r") as hours_file:
             lines = hours_file.readlines()
-            total_hours_items = lines[-1]  # Access the last line (final hour)
+            total_hours_items = lines[-1]  # Access the last line (final hour and item)
         with open("./files/end_of_day.txt", "w") as eod_file:
             eod_file.write(f"{name}\n")
             eod_file.write(f"{date}\n")
@@ -60,10 +72,9 @@ def daily_operations():
             end = input("Are you ready to perform the end of day tasks? ")
             if end.lower() in ["yes", "y"]:
                 print("Great, here is your final Report: ")
-                print(name)
-                print(date)
+                print(f'Operator Name: {name}')
+                print(f'Date: {date}')
                 print(total_hours_items)
-                
             else:
                 print("Okay, please come back when you are ready ")
 
