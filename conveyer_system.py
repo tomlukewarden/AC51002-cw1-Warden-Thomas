@@ -1,4 +1,5 @@
 import random
+import time
 
 
 # Start daily production
@@ -12,7 +13,7 @@ def daily_operations():
         prev_report = eod_file.read()
         # Printing report
         print(f"Here's yesterdays report: {prev_report}")
-
+    
     # Function of the start of productions
     def production_start():
         start = input(
@@ -56,9 +57,16 @@ def daily_operations():
                 hours_file.write(
                     f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
                 )
+                def maintenance(working_hours):
+                    
+                    if working_hours == 5:
+                        print('Service Needed, maximum hours of operation has been reached')
+                        time.sleep(5)   
+                maintenance(working_hours)
     else:
         print("Daily productions have not started yet")
 
+        
     def end_of_day():
         # Opening text file to collect final report
         with open("./files/hours.txt", "r") as hours_file:
