@@ -1,14 +1,10 @@
 # Start daily production
 def daily_operations():
-    def production_start(): 
-        time = int(input('What time is it? '))
-        
-        if time >= 9 and time <= 17:
-            # name = input('Enter your name to set up the productions ')
-            start = input("Welcome Back! Would you like to start the production for today? ")
-        else:
-            print('It is not the correct time to start these productions, please come back between 9am and 5pm')
-            exit()
+    def production_start():
+        start = input(
+            "Welcome Back! Would you like to start the production for today? "
+        )
+
         # Check for valid start responses
         if start.lower() in ["yes", "y"]:
             print("Production has begun.")
@@ -20,24 +16,31 @@ def daily_operations():
             print("This is not the correct input.")
             print("Please input Yes or No.")
             return production_start()
-    
+
+    # If statement to show that the productions are working
     if production_start():
-        print('Executing daily productions')
+        # Working hours logic - counter is working
+        working_hours = 0
+        with open("./files/hours.txt", "w") as hours_file:
+            for hour in range(9, 18):
+                print(f"{hour} o'clock, Total working hours so far: {working_hours}")
+
+                if hour < 17:
+                    working_hours += 1
+                hours_file.write(f"Hour: {working_hours}\n")
     else:
-        print('Daily productions have not started yet')
-        
+        print("Daily productions have not started yet")
 
-'''
-    
+    def end_of_day():
+        # Want to collect all data from the day and store it in a text file with the date and be able to retrieve this at the start of the next day
+        end = input("Are you ready to perform the end of day tasks? ")
+        if end.lower() in ["yes", "y"]:
+            print("Great, here is your final Report! See you tomorrow!")
+            exit()
+        else:
+            print("Okay, please come back when you are ready ")
 
-index 10 = 9am
-index 11 = 10am
-index 12 = 11am
-index 13 = 12pm
-index 14 = 1pm
-index 15 = 2pm
-index 16 = 3pm
-index 17 = 4pm
-index 18 = 5pm
-'''
+    end_of_day()
+
+
 daily_operations()
