@@ -20,25 +20,29 @@ def daily_operations():
     # If statement to show that the productions are working
     if production_start():
         # Working hours logic - counter is working
-        working_hours = 0
         with open("./files/hours.txt", "w") as hours_file:
+            working_hours = 0
             for hour in range(9, 18):
                 print(f"{hour} o'clock, Total working hours so far: {working_hours}")
 
                 if hour < 17:
                     working_hours += 1
-                hours_file.write(f"Hour: {working_hours}\n")
+                hours_file.write(f"Total Working Hours: {working_hours}\n")
     else:
         print("Daily productions have not started yet")
 
     def end_of_day():
+        with open('./files/hours.txt', 'r') as hours_file:
+            lines = hours_file.readlines()
+            total_hours = lines[-1]  # Access the last line (final hour)
+            print(total_hours)
         # Want to collect all data from the day and store it in a text file with the date and be able to retrieve this at the start of the next day
-        end = input("Are you ready to perform the end of day tasks? ")
-        if end.lower() in ["yes", "y"]:
-            print("Great, here is your final Report! See you tomorrow!")
-            exit()
-        else:
-            print("Okay, please come back when you are ready ")
+            end = input("Are you ready to perform the end of day tasks? ")
+            if end.lower() in ["yes", "y"]:
+                print("Great, here is your final Report! See you tomorrow!")
+                exit()
+            else:
+                print("Okay, please come back when you are ready ")
 
     end_of_day()
 
