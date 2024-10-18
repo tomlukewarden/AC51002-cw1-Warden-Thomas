@@ -30,10 +30,10 @@ DundeeZest has tasked you with developing a **prototype Python software system**
 
 1. It should allow an operator to start production for each day by typing in an input. You can decide
    what this input will be. The input cannot change and operation for the day cannot commence
-   without it.
+   without it. [X]
 2. Once operation commences, the software will continue to monitor production until the daily
    limit of operating hours is reached i.e. 9am – 5pm. Assume 1 hour to be equivalent to a single
-   count by the Python interpreter e.g. a count from 1 to 2 makes 1 hour.
+   count by the Python interpreter e.g. a count from 1 to 2 makes 1 hour.[X]
 3. It should be able to store the total operating hours in a .txt file and retrieve the value at the start
    of the next day’s operation.
 4. At the end of each day, it should update the total operating hours and store the updated value

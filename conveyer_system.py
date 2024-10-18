@@ -1,7 +1,11 @@
 # Start daily production
 def daily_operations():
-    name = input('Enter your Name')
-    date = input('Enter the Date')
+    name = input('Enter your Name ')
+    date = input('Enter the Date ')
+    
+    with open('./files/end_of_day.txt', 'r') as eod_file:
+        prev_report = eod_file.read()
+        print(f"Here's yesterdays report: {prev_report}")
     
     def production_start():
         start = input(
