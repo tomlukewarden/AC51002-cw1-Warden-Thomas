@@ -7,12 +7,13 @@ def daily_operations():
     # Will be adding a better/more secure way to this
     name = input("Enter your Name ")
     date = input("Enter the Date ")
-
+    first_five_hours = []
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
         # Printing report
         print(f"Here's yesterdays report: {prev_report}")
+        report_lines = eod_file.readlines()[-3:]
     # Function of the start of productions
     def production_start():
         start = input(
@@ -50,6 +51,9 @@ def daily_operations():
                     )
                     print(f"Hour {working_hours} produced {items_per_hour} items \n")
                     time.sleep(5)
+                elif hour == 9 and hour <= 15:
+                    first_five_hours.append(f"Hour {working_hours} produced {items_per_hour} items")
+                
                 # Adding these to the text file
                 hours_file.write(f"Total Operating Hours: {working_hours}\n")
                 hours_file.write(
