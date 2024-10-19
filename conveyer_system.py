@@ -13,7 +13,6 @@ def daily_operations():
         prev_report = eod_file.read()
         # Printing report
         print(f"Here's yesterdays report: {prev_report}")
-    
     # Function of the start of productions
     def production_start():
         start = input(
@@ -49,6 +48,8 @@ def daily_operations():
                     total_items_produced += (
                         items_per_hour  # Total of Items updates every hour
                     )
+                    print(f"Hour {working_hours} produced {items_per_hour} items \n")
+                    time.sleep(5)
                 # Adding these to the text file
                 hours_file.write(f"Total Operating Hours: {working_hours}\n")
                 hours_file.write(
