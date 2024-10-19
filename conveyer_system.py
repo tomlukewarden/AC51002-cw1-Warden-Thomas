@@ -12,8 +12,6 @@ def daily_operations():
         prev_report = eod_file.read()
         # Printing report
         print(f"Here's yesterdays report: {prev_report}")
-        report_lines = eod_file.readlines()[-3:]
-        print(report_lines)
     # Function of the start of productions
     def production_start():
         start = input(
@@ -50,7 +48,7 @@ def daily_operations():
                         items_per_hour  # Total of Items updates every hour
                     )
                     print(f"Hour {working_hours} produced {items_per_hour} items \n")
-                    time.sleep(5)
+                    time.sleep(3)
                 # Adding these to the text file
                 hours_file.write(f"Total Operating Hours: {working_hours}\n")
                 hours_file.write(
@@ -62,14 +60,20 @@ def daily_operations():
                 # Using function so it can be recalled if needed
                 def maintenance(working_hours):
                     # Max hours it can handle is 4
-                    if working_hours == 4:
+                    if working_hours == 4 or working_hours == 8:
                         print('Service Needed, maximum hours of operation has been reached')
-                        time.sleep(5)   # Pause program for 5 seconds then return
+                        time.sleep(3) # Pause program for 3 seconds then return
+                    with open('./files/service_report.txt', 'w') as service_file:
+                            service_file.write(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
                 maintenance(working_hours)
     else:
         print("Daily productions have not started yet")
 
-        
+        if maintenance():
+            print('Heres your maintenance report:')
+            print(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
+        else:
+            pass
     def end_of_day():
         # Opening text file to collect final report
         with open("./files/hours.txt", "r") as hours_file:
