@@ -63,18 +63,19 @@ def daily_operations():
                     if working_hours == 4 or working_hours == 8:
                         print('Service Needed, maximum hours of operation has been reached')
                         print('Heres your maintenance report:')
-                        print(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
+                        # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
+                        print(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n") # Will become a total items produced since last service
                         time.sleep(3) # Pause program for 3 seconds then return
                     with open('./files/service_report.txt', 'w') as service_file:
                             service_file.write(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
                 maintenance(working_hours)
-    else:
+    else: 
         print("Daily productions have not started yet")
 
     def end_of_day():
         # Opening text file to collect final report
         with open("./files/hours.txt", "r") as hours_file:
-            lines = hours_file.readlines()
+            lines = hours_file.readlines() # Using readlines() method to produce a list of all items in txt file
             total_hours_items = lines[-1]  # Access the last line (final hour and item)
         with open("./files/end_of_day.txt", "w") as eod_file:
             eod_file.write(f"{name}\n")
