@@ -5,12 +5,12 @@
 **Overview**  
 DundeeZest is a company providing affordable luxury wear for University of Dundee students. They are planning to upgrade their production line by implementing a conveyor belt system to improve efficiency.
 
-**System Operation**
+### **System Operation**
 
 - **Operating Hours:** The conveyor belt system will run every day from **9 AM to 5 PM**.
 - **Start Requirement:** Production requires an operator's input to initiate each day.
 
-**Production & Maintenance Requirements**
+### **Production & Maintenance Requirements**
 
 - **Production Rate:** The system will produce a predetermined number of items per hour.
 - **Maintenance Schedule:** Routine maintenance is required after a specified number of operating hours.
@@ -19,7 +19,7 @@ DundeeZest is a company providing affordable luxury wear for University of Dunde
   - Show the **total number of items produced** since the last maintenance.
   - Shut down until maintenance is completed.
 
-**Maintenance Cycle**
+### **Maintenance Cycle**
 
 - After completing maintenance, all production data will reset, and the production-maintenance cycle will restart.
 

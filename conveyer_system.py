@@ -1,4 +1,5 @@
 import random
+import time
 
 
 # Start daily production
@@ -6,13 +7,11 @@ def daily_operations():
     # Will be adding a better/more secure way to this
     name = input("Enter your Name ")
     date = input("Enter the Date ")
-
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
         # Printing report
         print(f"Here's yesterdays report: {prev_report}")
-
     # Function of the start of productions
     def production_start():
         start = input(
@@ -48,6 +47,8 @@ def daily_operations():
                     total_items_produced += (
                         items_per_hour  # Total of Items updates every hour
                     )
+                    print(f"Hour {working_hours} produced {items_per_hour} items \n")
+                    time.sleep(3)
                 # Adding these to the text file
                 hours_file.write(f"Total Operating Hours: {working_hours}\n")
                 hours_file.write(
@@ -56,13 +57,25 @@ def daily_operations():
                 hours_file.write(
                     f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
                 )
-    else:
+                # Using function so it can be recalled if needed
+                def maintenance(working_hours):
+                    # Max hours it can handle is 4
+                    if working_hours == 4 or working_hours == 8:
+                        print('Service Needed, maximum hours of operation has been reached')
+                        print('Heres your maintenance report:')
+                        # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
+                        print(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n") # Will become a total items produced since last service
+                        time.sleep(3) # Pause program for 3 seconds then return
+                    with open('./files/service_report.txt', 'w') as service_file:
+                            service_file.write(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
+                maintenance(working_hours)
+    else: 
         print("Daily productions have not started yet")
 
     def end_of_day():
         # Opening text file to collect final report
         with open("./files/hours.txt", "r") as hours_file:
-            lines = hours_file.readlines()
+            lines = hours_file.readlines() # Using readlines() method to produce a list of all items in txt file
             total_hours_items = lines[-1]  # Access the last line (final hour and item)
         with open("./files/end_of_day.txt", "w") as eod_file:
             eod_file.write(f"{name}\n")
