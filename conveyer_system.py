@@ -62,6 +62,8 @@ def daily_operations():
                     # Max hours it can handle is 4
                     if working_hours == 4 or working_hours == 8:
                         print('Service Needed, maximum hours of operation has been reached')
+                        print('Heres your maintenance report:')
+                        print(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
                         time.sleep(3) # Pause program for 3 seconds then return
                     with open('./files/service_report.txt', 'w') as service_file:
                             service_file.write(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
@@ -69,11 +71,6 @@ def daily_operations():
     else:
         print("Daily productions have not started yet")
 
-        if maintenance():
-            print('Heres your maintenance report:')
-            print(f"Total Operating Hours: {working_hours} & Total Items produced: {total_items_produced} \n")
-        else:
-            pass
     def end_of_day():
         # Opening text file to collect final report
         with open("./files/hours.txt", "r") as hours_file:
