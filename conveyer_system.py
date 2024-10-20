@@ -9,7 +9,6 @@ def daily_operations():
     # Global Variables
     name = input("Enter your Name ")
     date = input("Enter the Date ")
-    service_total = 0
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
@@ -39,6 +38,7 @@ def daily_operations():
         with open("./files/hours.txt", "w") as hours_file:
             working_hours = 0
             items_per_hour = 0
+            service_total = 0
             hours_between_service = 0
             total_items_produced = 0
             for hour in range(9, 18):
@@ -66,24 +66,27 @@ def daily_operations():
                 )
 
                 # Using function so it can be recalled if needed
-                def maintenance(working_hours):
+                def maintenance(hours_between_service, service_total):
                     # Max hours it can handle is 4
                     if working_hours == 4 or working_hours == 8:
                         if hours_between_service == 4:
                             print(
-                            "Service Needed, maximum hours of operation has been reached"
-                        )
+                                "Service Needed, maximum hours of operation has been reached"
+                            )
                             print("Heres your maintenance report:")
-                        # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
-                            print(
-                            f"Total Operating Hours: {hours_between_service} & Total Items produced: {service_total} \n"
-                        )  # Will become a total items produced since last service
+                            # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
                             time.sleep(3)  # Pause program for 3 seconds then return
                         with open("./files/service_report.txt", "w") as service_file:
                             service_file.write(
-                            f"Total Operating Hours: {hours_between_service} & Total Items produced: {service_total} \n"
-                        )
-                maintenance(working_hours)
+                                f"Total Operating Hours: {hours_between_service} & Total Items produced: {service_total} \n"
+                            )
+                        with open("./files/service_report.txt", "r") as service_file:
+                            service_total = service_file.read
+                            print(f"{service_total}")
+                            service_total = 0
+                            hours_between_service = 0
+
+                maintenance(hours_between_service, service_total)
     else:
         print("Daily productions have not started yet")
 
