@@ -1,7 +1,5 @@
 import random
 import time
-
-
 # Start daily production
 def daily_operations():
     # Will be adding a better/more secure way to this
@@ -38,22 +36,20 @@ def daily_operations():
         with open("./files/hours.txt", "w") as hours_file:
             working_hours = 0
             items_per_hour = 0
-            service_total = 0
-            hours_between_service = 0
+            service_total = []
             total_items_produced = 0
             for hour in range(9, 18):
                 # Maximum number of items produced an hour will be 100 items
                 if hour < 17:
                     # Working hours increase by 1 each loop round
                     working_hours += 1
-                    hours_between_service += 1
                     items_per_hour = random.randrange(
                         75, 100
                     )  # Items increase by a random number between 75 and 100
                     total_items_produced += (
                         items_per_hour  # Total of Items updates every hour
                     )
-                    service_total += items_per_hour
+                    service_total.append(items_per_hour)
                     print(f"Hour {working_hours} produced {items_per_hour} items \n")
                     time.sleep(3)
                 # Adding these to the text file
@@ -64,29 +60,23 @@ def daily_operations():
                 hours_file.write(
                     f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
                 )
-
                 # Using function so it can be recalled if needed
-                def maintenance(hours_between_service, service_total):
+                def maintenance(service_total):
+                    max_hours = 4
                     # Max hours it can handle is 4
-                    if working_hours == 4 or working_hours == 8:
-                        if hours_between_service == 4:
+                    if working_hours % 4 == 0:
                             print(
                                 "Service Needed, maximum hours of operation has been reached"
                             )
                             print("Heres your maintenance report:")
+                            print(f'Over {max_hours} hours, we have produced {service_total} items.')
                             # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
                             time.sleep(3)  # Pause program for 3 seconds then return
-                        with open("./files/service_report.txt", "w") as service_file:
+                    with open("./files/service_report.txt", "w") as service_file:
                             service_file.write(
-                                f"Total Operating Hours: {hours_between_service} & Total Items produced: {service_total} \n"
+                                f'Over {max_hours} hours, we have produced {service_total} items.\n'
                             )
-                        with open("./files/service_report.txt", "r") as service_file:
-                            service_total = service_file.read
-                            print(f"{service_total}")
-                            service_total = 0
-                            hours_between_service = 0
-
-                maintenance(hours_between_service, service_total)
+                maintenance(service_total)
     else:
         print("Daily productions have not started yet")
 

@@ -1,1 +1,1 @@
-Total Operating Hours: 8 & Total Items produced: 675 
+Over 4 hours, we have produced [84, 80, 79, 95, 82, 86, 78, 81] items.

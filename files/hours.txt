@@ -1,19 +1,19 @@
 Total Operating Hours: 1
-Hour 1 produced 87 items 
-In 1 hours of Operation, DundeeZest Conveyer Belt produced 87 itemsTotal Operating Hours: 2
-Hour 2 produced 82 items 
-In 2 hours of Operation, DundeeZest Conveyer Belt produced 169 itemsTotal Operating Hours: 3
-Hour 3 produced 76 items 
-In 3 hours of Operation, DundeeZest Conveyer Belt produced 245 itemsTotal Operating Hours: 4
-Hour 4 produced 90 items 
-In 4 hours of Operation, DundeeZest Conveyer Belt produced 335 itemsTotal Operating Hours: 5
-Hour 5 produced 81 items 
-In 5 hours of Operation, DundeeZest Conveyer Belt produced 416 itemsTotal Operating Hours: 6
-Hour 6 produced 84 items 
-In 6 hours of Operation, DundeeZest Conveyer Belt produced 500 itemsTotal Operating Hours: 7
-Hour 7 produced 79 items 
-In 7 hours of Operation, DundeeZest Conveyer Belt produced 579 itemsTotal Operating Hours: 8
-Hour 8 produced 96 items 
-In 8 hours of Operation, DundeeZest Conveyer Belt produced 675 itemsTotal Operating Hours: 8
-Hour 8 produced 96 items 
-In 8 hours of Operation, DundeeZest Conveyer Belt produced 675 items
+Hour 1 produced 84 items 
+In 1 hours of Operation, DundeeZest Conveyer Belt produced 84 itemsTotal Operating Hours: 2
+Hour 2 produced 80 items 
+In 2 hours of Operation, DundeeZest Conveyer Belt produced 164 itemsTotal Operating Hours: 3
+Hour 3 produced 79 items 
+In 3 hours of Operation, DundeeZest Conveyer Belt produced 243 itemsTotal Operating Hours: 4
+Hour 4 produced 95 items 
+In 4 hours of Operation, DundeeZest Conveyer Belt produced 338 itemsTotal Operating Hours: 5
+Hour 5 produced 82 items 
+In 5 hours of Operation, DundeeZest Conveyer Belt produced 420 itemsTotal Operating Hours: 6
+Hour 6 produced 86 items 
+In 6 hours of Operation, DundeeZest Conveyer Belt produced 506 itemsTotal Operating Hours: 7
+Hour 7 produced 78 items 
+In 7 hours of Operation, DundeeZest Conveyer Belt produced 584 itemsTotal Operating Hours: 8
+Hour 8 produced 81 items 
+In 8 hours of Operation, DundeeZest Conveyer Belt produced 665 itemsTotal Operating Hours: 8
+Hour 8 produced 81 items 
+In 8 hours of Operation, DundeeZest Conveyer Belt produced 665 items
