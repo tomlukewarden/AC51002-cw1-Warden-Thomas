@@ -70,17 +70,15 @@ def daily_operations():
                     service_total = 0
                     # Max hours it can handle is 4
                     if working_hours == 4:
-                        service_total = sum(service_item_list)
                         print(
                             "Service Needed, maximum hours of operation has been reached"
                         )
                         print("Heres your maintenance report:")
                         print(
-                            f"Over {max_hours} hours, we have produced {service_total} items."
+                            f"Over {max_hours} hours, we have produced {sum(service_item_list[-4:])} items."
                         )
                         # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
                         time.sleep(3)  # Pause program for 3 seconds then return
-                        service_total = 0
                     elif working_hours == 8:
                         service_total = sum(service_item_list[-4:])
                         print(
@@ -96,7 +94,7 @@ def daily_operations():
                         pass
                     with open("./files/service_report.txt", "w") as service_file:
                         service_file.write(
-                            f"Over {max_hours} hours, we have produced {service_item_list[-4:]} items.\n"
+                            f"Over {max_hours} hours, we have produced {sum(service_item_list[-4:])} items.\n"
                         )
 
                 maintenance()
@@ -120,9 +118,12 @@ def daily_operations():
                 print("Great, here is your final Report: ")
                 print(f"Operator Name: {name}")
                 print(f"Date: {date}")
-                print(total_hours_items)
-            elif end.lower() in ["yes", "y"]:
-                def next_day():
+                print(total_hours_items) 
+            end_of_day()
+daily_operations()
+
+'''
+def next_day():
                     user_confirmation = input('Would you like to continue to the next day?')
                     if user_confirmation.lower() in ["yes", "y"]:
                         print("Okay! Please input your details to start production")
@@ -133,5 +134,4 @@ def daily_operations():
                         print("This is not the correct input.")
                         print("Please input Yes or No.")
                         return next_day()
-    end_of_day()
-daily_operations()
+'''
