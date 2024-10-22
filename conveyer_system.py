@@ -67,26 +67,14 @@ def daily_operations():
                 # Using function so it can be recalled if needed
                 def maintenance():
                     max_hours = 4
-                    service_total = 0
                     # Max hours it can handle is 4
-                    if working_hours == 4:
+                    if working_hours % 4 == 0:
                         print(
                             "Service Needed, maximum hours of operation has been reached"
                         )
                         print("Heres your maintenance report:")
                         print(
                             f"Over {max_hours} hours, we have produced {sum(service_item_list[-4:])} items."
-                        )
-                        # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
-                        time.sleep(3)  # Pause program for 3 seconds then return
-                    elif working_hours == 8:
-                        service_total = sum(service_item_list[-4:])
-                        print(
-                            "Service Needed, maximum hours of operation has been reached"
-                        )
-                        print("Heres your maintenance report:")
-                        print(
-                            f"Over {max_hours} hours, we have produced {service_total} items."
                         )
                         # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
                         time.sleep(3)  # Pause program for 3 seconds then return
@@ -127,7 +115,7 @@ def daily_operations():
 daily_operations()
 
 next_day = input('Are you happy to move on to the next daily operations?')
-if next_day.lower in ["yes", "y"]:
+if next_day.lower() in ["yes", "y"]:
     daily_operations()
 else:
     exit()
