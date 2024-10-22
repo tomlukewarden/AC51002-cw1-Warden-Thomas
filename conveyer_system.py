@@ -121,8 +121,8 @@ def daily_operations():
                 print(f"Operator Name: {name}")
                 print(f"Date: {date}")
                 print(total_hours_items)
-    end_of_day()
-    def next_day():
+            elif end.lower() in ["yes", "y"]:
+                def next_day():
                     user_confirmation = input('Would you like to continue to the next day?')
                     if user_confirmation.lower() in ["yes", "y"]:
                         print("Okay! Please input your details to start production")
@@ -133,4 +133,5 @@ def daily_operations():
                         print("This is not the correct input.")
                         print("Please input Yes or No.")
                         return next_day()
+    end_of_day()
 daily_operations()
