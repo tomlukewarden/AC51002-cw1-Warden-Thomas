@@ -46,7 +46,7 @@ DundeeZest has tasked you with developing a **prototype Python software system**
 7. It should be able to record the total number of items produced, in the appropriate file and
    update the value at the end of each day. [X]
 8. It should display a 'Service Required' message when the maximum limit of operating hours is
-   reached (a value can be assumed for this). It should also display the total number of items
+   reached (a value can be assumed for this). It should also display the total number of items [X]
    produced since the last maintenance.
 9. It should reset all production and operational data, including total items produced and
    operating hours, to prepare for the next production cycle. It is assumed that the routine

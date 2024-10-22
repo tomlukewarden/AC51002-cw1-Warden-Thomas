@@ -1,5 +1,7 @@
 import random
 import time
+
+
 # Start daily production
 def daily_operations():
     # Will be adding a better/more secure way to this
@@ -38,6 +40,7 @@ def daily_operations():
             items_per_hour = 0
             service_item_list = []
             total_items_produced = 0
+
             for hour in range(9, 18):
                 # Maximum number of items produced an hour will be 100 items
                 if hour < 17:
@@ -60,33 +63,42 @@ def daily_operations():
                 hours_file.write(
                     f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
                 )
+
                 # Using function so it can be recalled if needed
                 def maintenance():
                     max_hours = 4
                     service_total = 0
                     # Max hours it can handle is 4
-                    if working_hours % 4 == 0:
+                    if working_hours == 4:
                         service_total = sum(service_item_list)
                         print(
-                                "Service Needed, maximum hours of operation has been reached"
-                            )
+                            "Service Needed, maximum hours of operation has been reached"
+                        )
                         print("Heres your maintenance report:")
-                        print(f'Over {max_hours} hours, we have produced {service_total} items.')
-                            # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
-                        time.sleep(3)  # Pause program for 3 seconds then return
-                    elif working_hours == 8:
-                        service_second_total = sum(service_item_list[-4])
                         print(
-                                "Service Needed, maximum hours of operation has been reached"
-                            )
+                            f"Over {max_hours} hours, we have produced {service_total} items."
+                        )
+                        # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
+                        time.sleep(3)  # Pause program for 3 seconds then return
+                        service_total = 0
+                    elif working_hours == 8:
+                        service_total = sum(service_item_list[-4:])
+                        print(
+                            "Service Needed, maximum hours of operation has been reached"
+                        )
                         print("Heres your maintenance report:")
-                        print(f'Over {max_hours} hours, we have produced {service_second_total} items.')
+                        print(
+                            f"Over {max_hours} hours, we have produced {service_total} items."
+                        )
+                        # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
+                        time.sleep(3)  # Pause program for 3 seconds then return
                     else:
                         pass
                     with open("./files/service_report.txt", "w") as service_file:
-                            service_file.write(
-                                f'Over {max_hours} hours, we have produced {service_total} items.\n'
-                            )
+                        service_file.write(
+                            f"Over {max_hours} hours, we have produced {service_total} items.\n"
+                        )
+
                 maintenance()
     else:
         print("Daily productions have not started yet")
@@ -111,6 +123,7 @@ def daily_operations():
                 print(total_hours_items)
             else:
                 print("Okay, please come back when you are ready ")
+
     end_of_day()
 
 
