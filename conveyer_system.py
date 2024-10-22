@@ -118,20 +118,17 @@ def daily_operations():
                 print("Great, here is your final Report: ")
                 print(f"Operator Name: {name}")
                 print(f"Date: {date}")
-                print(total_hours_items) 
-            end_of_day()
+                print(total_hours_items)
+            else:
+                print("Okay, please come back when you are ready ")
+    
+    end_of_day()
+    
 daily_operations()
 
-'''
-def next_day():
-                    user_confirmation = input('Would you like to continue to the next day?')
-                    if user_confirmation.lower() in ["yes", "y"]:
-                        print("Okay! Please input your details to start production")
-                        return daily_operations()
-                    elif user_confirmation.lower() in ["no", "n"]:
-                        print("Okay! Our Operational System will now close.")
-                    else:  
-                        print("This is not the correct input.")
-                        print("Please input Yes or No.")
-                        return next_day()
-'''
+next_day = input('Are you happy to move on to the next daily operations?')
+if next_day.lower in ["yes", "y"]:
+    daily_operations()
+else:
+    exit()
+
