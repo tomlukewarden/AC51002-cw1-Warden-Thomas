@@ -4,11 +4,17 @@ import time
 
 # Start daily production
 def daily_operations():
-    # Will be adding a better/more secure way to this
+    date = input("Enter the Date: ")
+    name = input("Enter your Name: ")
 
-    # Global Variables
-    name = input("Enter your Name ")
-    date = input("Enter the Date ")
+    valid_names = ['Obi', 'Arlo', 'Lego', 'Emma']
+
+    if name in valid_names:
+        print('This is the correct Operator Name')
+    else:
+        exit()
+
+
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
