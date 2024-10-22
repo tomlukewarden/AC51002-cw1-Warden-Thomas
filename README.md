@@ -47,15 +47,10 @@ DundeeZest has tasked you with developing a **prototype Python software system**
    update the value at the end of each day. [X]
 8. It should display a 'Service Required' message when the maximum limit of operating hours is
    reached (a value can be assumed for this). It should also display the total number of items [X]
-   produced since the last maintenance.
+   produced since the last maintenance. [X]
 9. It should reset all production and operational data, including total items produced and
    operating hours, to prepare for the next production cycle. It is assumed that the routine
    maintenance has been completed at this point.
-   Task A: Write a Python program that meets the above requirements for the conveyor belt system.
-   Task B: Briefly describe each variable and function you have used in one sentence. The descriptions can
-   be included as comments in your program.
-   Task C: Requirements 10 and 11 are optional. Attempting them means you can get additional marks, but
-   only proceed with them if you have successfully completed the main requirements above.
 10. Assume that the conveyor belt will be used by 4 operators and only one of them operates it per
     day. Your software should keep track of the number of items produced by each operator and
     display their individual totals at the point of maintenance along with the other data in
