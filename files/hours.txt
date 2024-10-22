@@ -1,19 +1,17 @@
 Total Operating Hours: 1
-Hour 1 produced 86 items 
-In 1 hours of Operation, DundeeZest Conveyer Belt produced 86 itemsTotal Operating Hours: 2
-Hour 2 produced 99 items 
-In 2 hours of Operation, DundeeZest Conveyer Belt produced 185 itemsTotal Operating Hours: 3
-Hour 3 produced 79 items 
-In 3 hours of Operation, DundeeZest Conveyer Belt produced 264 itemsTotal Operating Hours: 4
-Hour 4 produced 92 items 
-In 4 hours of Operation, DundeeZest Conveyer Belt produced 356 itemsTotal Operating Hours: 5
-Hour 5 produced 80 items 
-In 5 hours of Operation, DundeeZest Conveyer Belt produced 436 itemsTotal Operating Hours: 6
-Hour 6 produced 90 items 
-In 6 hours of Operation, DundeeZest Conveyer Belt produced 526 itemsTotal Operating Hours: 7
-Hour 7 produced 78 items 
-In 7 hours of Operation, DundeeZest Conveyer Belt produced 604 itemsTotal Operating Hours: 8
-Hour 8 produced 77 items 
-In 8 hours of Operation, DundeeZest Conveyer Belt produced 681 itemsTotal Operating Hours: 8
-Hour 8 produced 77 items 
-In 8 hours of Operation, DundeeZest Conveyer Belt produced 681 items
+Hour 1 produced 84 items 
+In 1 hours of Operation, DundeeZest Conveyer Belt produced 84 itemsTotal Operating Hours: 2
+Hour 2 produced 92 items 
+In 2 hours of Operation, DundeeZest Conveyer Belt produced 176 itemsTotal Operating Hours: 3
+Hour 3 produced 75 items 
+In 3 hours of Operation, DundeeZest Conveyer Belt produced 251 itemsTotal Operating Hours: 4
+Hour 4 produced 90 items 
+In 4 hours of Operation, DundeeZest Conveyer Belt produced 341 itemsTotal Operating Hours: 5
+Hour 5 produced 99 items 
+In 5 hours of Operation, DundeeZest Conveyer Belt produced 440 itemsTotal Operating Hours: 6
+Hour 6 produced 83 items 
+In 6 hours of Operation, DundeeZest Conveyer Belt produced 523 itemsTotal Operating Hours: 7
+Hour 7 produced 82 items 
+In 7 hours of Operation, DundeeZest Conveyer Belt produced 605 itemsTotal Operating Hours: 8
+Hour 8 produced 83 items 
+In 8 hours of Operation, DundeeZest Conveyer Belt produced 688 items
