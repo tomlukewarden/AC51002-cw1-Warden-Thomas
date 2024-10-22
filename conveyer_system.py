@@ -12,7 +12,8 @@ def daily_operations():
     if name in valid_names:
         print('This is the correct Operator Name')
     else:
-        exit()
+        print('Not the correct operator name, please try again')
+        daily_operations()
 
 
     # Showing yesterdays end of day report
