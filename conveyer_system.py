@@ -4,9 +4,9 @@ import time
 
 # Start daily production
 def daily_operations():
-    date = input("Enter the Date: ")
+    
+    # Going to make this an object so that I can see who was 'working' which days
     name = input("Enter your Name: ")
-
     valid_names = ['Obi', 'Arlo', 'Lego', 'Emma']
 
     if name in valid_names:
@@ -14,7 +14,14 @@ def daily_operations():
     else:
         print('Not the correct operator name, please try again')
         daily_operations()
-
+    
+    date = input("Enter the Date: ")
+    date_list = []
+    date_list.append(date)
+    
+    if date in date_list:
+        print('We already have data for this day, please try again')
+        daily_operations()
 
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
