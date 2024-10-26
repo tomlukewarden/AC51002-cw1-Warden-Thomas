@@ -80,16 +80,20 @@ def daily_operations():
                 )
                 if name == operator1:
                     operator1_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far')
+                    print(f'This operator has worked a total of {working_hours} hours so far\n')
+                    print(operator1_hours[-1:])
                 elif name == operator2:
                     operator2_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far')
+                    print(f'This operator has worked a total of {working_hours} hours so far\n')
+                    print(operator2_hours[-1:])
                 elif name == operator3:
                     operator3_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far')
+                    print(f'This operator has worked a total of {working_hours} hours so far\n')
+                    print(operator3_hours[-1:])
                 elif name == operator4:
                     operator4_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far')
+                    print(f'This operator has worked a total of {working_hours} hours so far\n')
+                    print(operator4_hours[-1:])
 
                 # Using function so it can be recalled if needed
                 def maintenance():
