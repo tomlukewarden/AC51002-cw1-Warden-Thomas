@@ -1,27 +1,26 @@
 import random
 import time
-
-
+from hours import StaffData
 # Start daily production
 def daily_operations():
     
     # Going to make this an object so that I can see who was 'working' which days
     name = input("Enter your Name: ")
-    valid_names = ['Obi', 'Arlo', 'Lego', 'Emma']
-    date = input("Enter the Date: ")
-    operator1 = 'Obi'
-    operator2 = 'Arlo'
-    operator3 = 'Lego'
-    operator4 = 'Emma'
-    operator1_hours = []
-    operator2_hours = []
-    operator3_hours = []
-    operator4_hours = []
-    if name in valid_names:
+    date = input('Enter the date')
+    operators = {
+    "Obi": StaffData("Obi", 1000, 0),
+    "Arlo": StaffData("Arlo", 1001, 0),
+    "Lego": StaffData("Lego", 1002, 0),
+    "Emma": StaffData("Emma", 1003, 0)
+}
+
+    selected_operator = operators.get(name)
+    if selected_operator:
         print('This is the correct Operator Name')
     else:
         print('Not the correct operator name, please try again')
         daily_operations()
+
     
     date_list = [date]
     print(date_list)
@@ -78,22 +77,9 @@ def daily_operations():
                 hours_file.write(
                     f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
                 )
-                if name == operator1:
-                    operator1_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far\n')
-                    print(operator1_hours[-1:])
-                elif name == operator2:
-                    operator2_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far\n')
-                    print(operator2_hours[-1:])
-                elif name == operator3:
-                    operator3_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far\n')
-                    print(operator3_hours[-1:])
-                elif name == operator4:
-                    operator4_hours.append(working_hours)
-                    print(f'This operator has worked a total of {working_hours} hours so far\n')
-                    print(operator4_hours[-1:])
+                selected_operator.hours_worked += 1
+                print(f"This operator has worked a total of {selected_operator.hours_worked} hours so far\n")
+
 
                 # Using function so it can be recalled if needed
                 def maintenance():
