@@ -1,24 +1,26 @@
 import random
 import time
-from hours import StaffData
+from staff import StaffData
+
+
 # Start daily production
 def daily_operations():
-    
+
     # Going to make this an object so that I can see who was 'working' which days
     name = input("Enter your Name: ")
-    date = input('Enter the date')
+    date = input("Enter the date")
     operators = {
-    "Obi": StaffData("Obi", 1000, 0),
-    "Arlo": StaffData("Arlo", 1001, 0),
-    "Lego": StaffData("Lego", 1002, 0),
-    "Emma": StaffData("Emma", 1003, 0)
-}
+        "Obi": StaffData("Obi", 1000, 0, 0),
+        "Arlo": StaffData("Arlo", 1001, 0, 0),
+        "Lego": StaffData("Lego", 1002, 0, 0),
+        "Emma": StaffData("Emma", 1003, 0, 0),
+    }
 
     selected_operator = operators.get(name)
     if selected_operator:
-        print('This is the correct Operator Name')
+        print("This is the correct Operator Name")
     else:
-        print(f'{name} is not recognized, please try again')
+        print(f"{name} is not recognized, please try again")
         daily_operations()
 
     # Showing yesterdays end of day report
@@ -74,9 +76,11 @@ def daily_operations():
                 hours_file.write(
                     f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
                 )
-                selected_operator.hours_worked += 1
-                print(f"This operator has worked a total of {selected_operator.hours_worked} hours so far\n")
-
+                selected_operator.hours_worked += 1 # should stop at 8
+                selected_operator.items_produced = total_items_produced
+                print(
+                    f"This operator has worked a total of {selected_operator.hours_worked} hours and has produced {selected_operator.items_produced} items so far\n"
+                )
 
                 # Using function so it can be recalled if needed
                 def maintenance():
@@ -123,14 +127,14 @@ def daily_operations():
                 print(total_hours_items)
             else:
                 print("Okay, please come back when you are ready ")
-    
+
     end_of_day()
-    
+
+
 daily_operations()
 
-next_day = input('Are you happy to move on to the next daily operations?')
+next_day = input("Are you happy to move on to the next daily operations? ")
 if next_day.lower() in ["yes", "y"]:
     daily_operations()
 else:
     exit()
-
