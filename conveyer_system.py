@@ -18,12 +18,9 @@ def daily_operations():
     if selected_operator:
         print('This is the correct Operator Name')
     else:
-        print('Not the correct operator name, please try again')
+        print(f'{name} is not recognized, please try again')
         daily_operations()
 
-    
-    date_list = [date]
-    print(date_list)
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
@@ -33,7 +30,7 @@ def daily_operations():
     # Function of the start of productions
     def production_start():
         start = input(
-            "Welcome Back! Would you like to start the production for today? "
+            f"Welcome Back {name}! Would you like to start the production for today? (Yes/No) \n "
         )
         # Check for valid start responses
         if start.lower() in ["yes", "y"]:
