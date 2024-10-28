@@ -50,7 +50,7 @@ DundeeZest has tasked you with developing a **prototype Python software system**
    produced since the last maintenance. [X]
 9. It should reset all production and operational data, including total items produced and
    operating hours, to prepare for the next production cycle. It is assumed that the routine
-   maintenance has been completed at this point.
+   maintenance has been completed at this point. [X]
 10. Assume that the conveyor belt will be used by 4 operators and only one of them operates it per
     day. Your software should keep track of the number of items produced by each operator and
     display their individual totals at the point of maintenance along with the other data in
