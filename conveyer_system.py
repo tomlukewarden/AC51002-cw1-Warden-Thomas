@@ -22,11 +22,6 @@ def daily_operations():
     else:
         print("Operator Name is not recognized, please try again")
         daily_operations()
-        
-    def storeData():
-            with open("./files/operators/{selected_operator.name.lower()}.txt", "a") as operator_file:
-                operator_file.write(f'{selected_operator} produced {total_items_produced} in {working_hours} hours')
-    storeData()
 
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
@@ -84,6 +79,10 @@ def daily_operations():
                 selected_operator.hours_worked = working_hours  # should stop at 8
                 selected_operator.items_produced = total_items_produced
 
+                def storeData():
+                    with open("./files/operators/{selected_operator.name.lower()}_data.txt", "a") as operator_file:
+                        operator_file.write(f'{selected_operator} produced {total_items_produced} in {working_hours} hours')
+                    storeData()
                 # Using function so it can be recalled if needed
                 def maintenance():
                     max_hours = 4
