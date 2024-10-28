@@ -1,2 +1,3 @@
-Hours Worked: 8, Items Produced: 678
-Hours Worked: 8, Items Produced: 692
+
+Hours Worked: 0, Items Produced: 0
+Cumulative Total - Hours Worked: 0, Items Produced: 0

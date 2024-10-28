@@ -48,10 +48,6 @@ def daily_operations():
                 service_item_list.append(items_per_hour)
                 print(f"Hour {working_hours} produced {items_per_hour} items \n")
                 time.sleep(3)
-
-            selected_operator.hours_worked = working_hours
-            selected_operator.items_produced = total_items_produced
-
             def maintenance():
                 if working_hours % 4 == 0:
                     print("Service Needed, maximum hours of operation has been reached")
@@ -59,19 +55,23 @@ def daily_operations():
                     print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.")
                     with open("./files/service_report.txt", "w") as service_file:
                         service_file.write(f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n")
-                time.sleep(10)
-                print("Maintenance has been completed")
-                print("Resuming production...")
+                    time.sleep(10)
+                    print("Maintenance has been completed")
+                    print("Resuming production...")
             maintenance()
     
     else:
         print("Daily productions have not started yet")
 
     def storeData():
+        selected_operator.hours_worked += working_hours
+        selected_operator.items_produced += total_items_produced
+
         file_path = f"./files/operators/{selected_operator.name.lower()}_data.txt"
         with open(file_path, "a") as operator_file:
-            operator_file.write(f'Hours Worked: {selected_operator.hours_worked}, Items Produced: {selected_operator.items_produced},\n')
+            operator_file.write(f'{date}: Hours Worked: {selected_operator.hours_worked}, Items Produced: {selected_operator.items_produced},\n')
         print("Data has been stored successfully!")
+
     def end_of_day():
         with open("./files/hours.txt", "r") as hours_file:
             lines = hours_file.readlines()
