@@ -59,8 +59,9 @@ def daily_operations():
                     print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.")
                     with open("./files/service_report.txt", "w") as service_file:
                         service_file.write(f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n")
-                time.sleep(3)
-
+                time.sleep(10)
+                print("Maintenance has been completed")
+                print("Resuming production...")
             maintenance()
     
     else:
@@ -69,8 +70,8 @@ def daily_operations():
     def storeData():
         file_path = f"./files/operators/{selected_operator.name.lower()}_data.txt"
         with open(file_path, "a") as operator_file:
-            operator_file.write(f'{date}:{selected_operator.name} produced {total_items_produced} in {working_hours} hours\n')
-
+            operator_file.write(f'Hours Worked: {selected_operator.hours_worked}, Items Produced: {selected_operator.items_produced},\n')
+        print("Data has been stored successfully!")
     def end_of_day():
         with open("./files/hours.txt", "r") as hours_file:
             lines = hours_file.readlines()
@@ -81,7 +82,7 @@ def daily_operations():
             eod_file.write(f"{date}\n")
             eod_file.write(f"{total_hours_items}\n")
 
-        end = input("Are you ready to perform the end of day tasks? ")
+        end = input(f"Good afternoon {name}! Are you ready to perform the end of day tasks? ")
         if end.lower() in ["yes", "y"]:
             print("Great, here is your final Report: ")
             print(f"Operator Name: {name}")
