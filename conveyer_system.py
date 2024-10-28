@@ -8,7 +8,7 @@ def daily_operations():
 
     # Going to make this an object so that I can see who was 'working' which days
     name = input("Enter your Name: ")
-    date = input("Enter the date")
+    date = input("Enter the date: ")
     operators = {
         "Obi": StaffData("Obi", 1000, 0, 0),
         "Arlo": StaffData("Arlo", 1001, 0, 0),
@@ -22,6 +22,11 @@ def daily_operations():
     else:
         print("Operator Name is not recognized, please try again")
         daily_operations()
+        
+    def storeData():
+            with open("./files/operators/{selected_operator.name.lower()}.txt", "a") as operator_file:
+                operator_file.write(f'{selected_operator} produced {total_items_produced} in {working_hours} hours')
+    storeData()
 
     # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
@@ -78,9 +83,6 @@ def daily_operations():
                 )
                 selected_operator.hours_worked = working_hours  # should stop at 8
                 selected_operator.items_produced = total_items_produced
-                print(
-                    f"This operator has worked a total of {selected_operator.hours_worked} hours and has produced {selected_operator.items_produced} items so far\n"
-                )
 
                 # Using function so it can be recalled if needed
                 def maintenance():
@@ -127,6 +129,7 @@ def daily_operations():
                 print(total_hours_items)
             else:
                 print("Okay, please come back when you are ready ")
+            storeData()
 
     end_of_day()
 
