@@ -1,0 +1,3 @@
+tuesday: Hours Worked: 8, Items Produced: 711,
+wednesday: Hours Worked: 8, Items Produced: 664,
+monday: Hours Worked: 8, Items Produced: 702,

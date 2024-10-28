@@ -1,6 +1,5 @@
 import random
 import time
-import datetime 
 from staff import StaffData
 
 # Start daily production
@@ -64,10 +63,8 @@ def daily_operations():
                     
                     # Calculate items produced in the last 4 hours
                     items_last_4_hours = sum(service_item_list[-4:])
-                    print(f"Over the last 4 hours, we produced {items_last_4_hours} items.")
-                    
-                    # Write the maintenance report to a file
                     print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.")
+                    # Write the maintenance report to a file
                     with open("./files/service_report.txt", "w") as service_file:
                         service_file.write(f"Over 4 hours, we have produced {items_last_4_hours} items.\n")
                     
@@ -76,7 +73,13 @@ def daily_operations():
                     time.sleep(10)
                     print("Maintenance has been completed")
                     print("Resuming production...")
-            maintenance()
+            maintenance_performed = True
+            
+    maintenance()
+
+    # Reset the maintenance flag after 4-hour block has completed
+    if working_hours % 4 == 0 and maintenance_performed:
+        maintenance_performed = False
     
     else:
         print("Daily productions have not started yet")
@@ -89,6 +92,7 @@ def daily_operations():
         with open(file_path, "a") as operator_file:
             operator_file.write(f'{day}: Hours Worked: {selected_operator.hours_worked}, Items Produced: {selected_operator.items_produced},\n')
         print("Data has been stored successfully!")
+            
 
     def end_of_day():
         with open("./files/hours.txt", "r") as hours_file:
