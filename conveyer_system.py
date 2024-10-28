@@ -2,11 +2,8 @@ import random
 import time
 from staff import StaffData
 
-
 # Start daily production
 def daily_operations():
-
-    # Going to make this an object so that I can see who was 'working' which days
     name = input("Enter your Name: ")
     date = input("Enter the date: ")
     operators = {
@@ -23,115 +20,78 @@ def daily_operations():
         print("Operator Name is not recognized, please try again")
         daily_operations()
 
-    # Showing yesterdays end of day report
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
-        # Printing report
-        print(f"Here's yesterdays report: {prev_report}")
+        print(f"Here's yesterday's report: {prev_report}")
 
-    # Function of the start of productions
     def production_start():
-        start = input(
-            f"Welcome Back {name}! Would you like to start the production for today? (Yes/No) \n "
-        )
-        # Check for valid start responses
+        start = input(f"Welcome Back {name}! Would you like to start the production for today? (Yes/No) \n ")
         if start.lower() in ["yes", "y"]:
             print("Production has begun.")
             return True
         elif start.lower() in ["no", "n"]:
             print("Production will not start.")
             return False
-        else:  # Error handling
-            print("This is not the correct input.")
-            print("Please input Yes or No.")
+        else:
+            print("This is not the correct input. Please input Yes or No.")
             return production_start()
 
-    # If statement to show that the productions are working
     if production_start():
-        # Working hours logic to add to text file
-        with open("./files/hours.txt", "w") as hours_file:
-            working_hours = 0
-            items_per_hour = 0
-            service_item_list = []
-            total_items_produced = 0
-            for hour in range(9, 18):
-                # Maximum number of items produced an hour will be 100 items
-                if hour < 17:
-                    # Working hours increase by 1 each loop round
-                    working_hours += 1
-                    items_per_hour = random.randrange(
-                        75, 100
-                    )  # Items increase by a random number between 75 and 100
-                    total_items_produced += (
-                        items_per_hour  # Total of Items updates every hour
-                    )
-                    service_item_list.append(items_per_hour)
-                    print(f"Hour {working_hours} produced {items_per_hour} items \n")
-                    time.sleep(3)
-                # Adding these to the text file
-                hours_file.write(f"Total Operating Hours: {working_hours}\n")
-                hours_file.write(
-                    f"Hour {working_hours} produced {items_per_hour} items \n"
-                )
-                hours_file.write(
-                    f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
-                )
-                selected_operator.hours_worked = working_hours  # should stop at 8
-                selected_operator.items_produced = total_items_produced
+        working_hours = 0
+        total_items_produced = 0
+        service_item_list = []
+        for hour in range(9, 18):
+            if hour < 17:
+                working_hours += 1
+                items_per_hour = random.randrange(75, 100)
+                total_items_produced += items_per_hour
+                service_item_list.append(items_per_hour)
+                print(f"Hour {working_hours} produced {items_per_hour} items \n")
+                time.sleep(3)
 
-                def storeData():
-                    with open("./files/operators/{selected_operator.name.lower()}_data.txt", "a") as operator_file:
-                        operator_file.write(f'{selected_operator} produced {total_items_produced} in {working_hours} hours')
-                    storeData()
-                # Using function so it can be recalled if needed
-                def maintenance():
-                    max_hours = 4
-                    # Max hours it can handle is 4
-                    if working_hours % 4 == 0:
-                        print(
-                            "Service Needed, maximum hours of operation has been reached"
-                        )
-                        print("Heres your maintenance report:")
-                        print(
-                            f"Over {max_hours} hours, we have produced {sum(service_item_list[-4:])} items."
-                        )
-                        # Printing service report - Will change this so it prints the sum of everything in the 4 hours instead of the total hours
-                        time.sleep(3)  # Pause program for 3 seconds then return
-                    else:
-                        pass
+            selected_operator.hours_worked = working_hours
+            selected_operator.items_produced = total_items_produced
+
+            def maintenance():
+                if working_hours % 4 == 0:
+                    print("Service Needed, maximum hours of operation has been reached")
+                    print("Here's your maintenance report:")
+                    print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.")
                     with open("./files/service_report.txt", "w") as service_file:
-                        service_file.write(
-                            f"Over {max_hours} hours, we have produced {sum(service_item_list[-4:])} items.\n"
-                        )
+                        service_file.write(f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n")
+                time.sleep(3)
 
-                maintenance()
+            maintenance()
+    
     else:
         print("Daily productions have not started yet")
 
+    def storeData():
+        file_path = f"./files/operators/{selected_operator.name.lower()}_data.txt"
+        with open(file_path, "a") as operator_file:
+            operator_file.write(f'{date}:{selected_operator.name} produced {total_items_produced} in {working_hours} hours\n')
+
     def end_of_day():
-        # Opening text file to collect final report
         with open("./files/hours.txt", "r") as hours_file:
-            lines = (
-                hours_file.readlines()
-            )  # Using readlines() method to produce a list of all items in txt file
+            lines = hours_file.readlines()
             total_hours_items = lines[-1]  # Access the last line (final hour and item)
+
         with open("./files/end_of_day.txt", "w") as eod_file:
             eod_file.write(f"{name}\n")
             eod_file.write(f"{date}\n")
             eod_file.write(f"{total_hours_items}\n")
-            # Want to collect all data from the day and store it in a text file with the date and be able to retrieve this at the start of the next day
-            end = input("Are you ready to perform the end of day tasks? ")
-            if end.lower() in ["yes", "y"]:
-                print("Great, here is your final Report: ")
-                print(f"Operator Name: {name}")
-                print(f"Date: {date}")
-                print(total_hours_items)
-            else:
-                print("Okay, please come back when you are ready ")
-            storeData()
+
+        end = input("Are you ready to perform the end of day tasks? ")
+        if end.lower() in ["yes", "y"]:
+            print("Great, here is your final Report: ")
+            print(f"Operator Name: {name}")
+            print(f"Date: {date}")
+            print(total_hours_items)
+            storeData() 
+        else:
+            print("Okay, please come back when you are ready")
 
     end_of_day()
-
 
 daily_operations()
 
