@@ -1,11 +1,11 @@
 import random
 import time
+import datetime 
 from staff import StaffData
 
 # Start daily production
 def daily_operations():
     name = input("Enter your Name: ")
-    date = input("Enter the date: ")
     operators = {
         "Obi": StaffData("Obi", 1000, 0, 0),
         "Arlo": StaffData("Arlo", 1001, 0, 0),
@@ -19,6 +19,13 @@ def daily_operations():
     else:
         print("Operator Name is not recognized, please try again")
         daily_operations()
+    
+    day = input("What is the day today?: ")
+    if day not in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]:
+        print("Please input the correct day of the week")
+        daily_operations()
+    else:
+        print("Day has been set")
 
     with open("./files/end_of_day.txt", "r") as eod_file:
         prev_report = eod_file.read()
@@ -48,12 +55,23 @@ def daily_operations():
                 service_item_list.append(items_per_hour)
                 print(f"Hour {working_hours} produced {items_per_hour} items \n")
                 time.sleep(3)
+                
+            # Perform maintenance
             def maintenance():
                 if working_hours % 4 == 0:
                     print("Service Needed, maximum hours of operation has been reached")
                     print("Here's your maintenance report:")
+                    
+                    # Calculate items produced in the last 4 hours
+                    items_last_4_hours = sum(service_item_list[-4:])
+                    print(f"Over the last 4 hours, we produced {items_last_4_hours} items.")
+                    
+                    # Write the maintenance report to a file
                     print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.")
                     with open("./files/service_report.txt", "w") as service_file:
+                        service_file.write(f"Over 4 hours, we have produced {items_last_4_hours} items.\n")
+                    
+                    # Simulate maintenance time
                         service_file.write(f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n")
                     time.sleep(10)
                     print("Maintenance has been completed")
@@ -69,7 +87,7 @@ def daily_operations():
 
         file_path = f"./files/operators/{selected_operator.name.lower()}_data.txt"
         with open(file_path, "a") as operator_file:
-            operator_file.write(f'{date}: Hours Worked: {selected_operator.hours_worked}, Items Produced: {selected_operator.items_produced},\n')
+            operator_file.write(f'{day}: Hours Worked: {selected_operator.hours_worked}, Items Produced: {selected_operator.items_produced},\n')
         print("Data has been stored successfully!")
 
     def end_of_day():
@@ -79,14 +97,14 @@ def daily_operations():
 
         with open("./files/end_of_day.txt", "w") as eod_file:
             eod_file.write(f"{name}\n")
-            eod_file.write(f"{date}\n")
+            eod_file.write(f"{day}\n")
             eod_file.write(f"{total_hours_items}\n")
 
         end = input(f"Good afternoon {name}! Are you ready to perform the end of day tasks? ")
         if end.lower() in ["yes", "y"]:
             print("Great, here is your final Report: ")
             print(f"Operator Name: {name}")
-            print(f"Date: {date}")
+            print(f"Date: {day}")
             print(total_hours_items)
             storeData() 
         else:
