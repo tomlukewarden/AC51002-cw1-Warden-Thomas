@@ -20,7 +20,7 @@ def daily_operations():
     if selected_operator:
         print("This is the correct Operator Name")
     else:
-        print(f"{name} is not recognized, please try again")
+        print("Operator Name is not recognized, please try again")
         daily_operations()
 
     # Showing yesterdays end of day report
@@ -76,7 +76,7 @@ def daily_operations():
                 hours_file.write(
                     f"In {working_hours} hours of Operation, DundeeZest Conveyer Belt produced {total_items_produced} items"
                 )
-                selected_operator.hours_worked = working_hours # should stop at 8
+                selected_operator.hours_worked = working_hours  # should stop at 8
                 selected_operator.items_produced = total_items_produced
                 print(
                     f"This operator has worked a total of {selected_operator.hours_worked} hours and has produced {selected_operator.items_produced} items so far\n"
