@@ -72,30 +72,24 @@ def daily_operations():
                     print("Here's your maintenance report:")
                     
                     # Calculate items produced in the last 4 hours
-                    items_last_4_hours = sum(service_item_list[-4:])
                     print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.")
-                    print(f"Over the last 4 hours, we produced {items_last_4_hours} items.")
+                    
                     
                     # Write the maintenance report to a file
                     with open("./files/service_report.txt", "w") as service_file:
-                        service_file.write(f"Over 4 hours, we have produced {items_last_4_hours} items.\n")
+                        service_file.write(f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n")
                     
                     # Simulate maintenance time
-                        service_file.write(f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n")
+                    print("Shutting down for maintenance...")
                     time.sleep(10)
                     print("Maintenance has been completed")
                     print("Resuming production...")
             maintenance_performed = True
-            
-    maintenance()
-
-    # Reset the maintenance flag after 4-hour block has completed
-    if working_hours % 4 == 0 and maintenance_performed:
-        maintenance_performed = False
+            # Reset the maintenance flag after 4-hour block has completed
+            if working_hours % 4 == 0 and maintenance_performed:
+                maintenance_performed = False
+            maintenance()
     
-        # Reset the maintenance flag after 4-hour block has completed
-        if working_hours % 4 == 0 and maintenance_performed:
-            maintenance_performed = False
     else:
         print("Daily productions have not started yet")
 
@@ -121,7 +115,6 @@ def daily_operations():
             eod_file.write(f"{total_hours_items}\n")
 
         # Prompt the operator to perform end-of-day tasks
-        end = input(f"Good afternoon {name}! Are you ready to perform the end-of-day tasks? ")
         end = input(f"Good afternoon {name}! Are you ready to perform the end of day tasks? ")
         if end.lower() in ["yes", "y"]:
             print("Great, here is your final Report: ")
@@ -129,7 +122,7 @@ def daily_operations():
             print(f"Date: {day}")
             print(total_hours_items)
             storeData()  # Store the operator's data
-            storeData() 
+            print("Thanks for using our software!") 
         else:
             print("Okay, please come back when you are ready")
     end_of_day()
@@ -142,3 +135,4 @@ if next_day.lower() in ["yes", "y"]:
     daily_operations()
 else:
     exit()
+
