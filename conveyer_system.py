@@ -48,7 +48,7 @@ def daily_operations():
             prev_report = eod_file.read()
             print(f"Here's the previous report: {prev_report}")
     except FileNotFoundError:
-        print("No previous report found.")
+        print("ERROR: No previous report found.")
 
     # Function to prompt the operator to start production
     def production_start():
@@ -149,7 +149,7 @@ def end_of_day(name, day, operator):
             # Find the final line of the file
             total_hours_items = lines[-1] if lines else "No data available."
     except FileNotFoundError: # Error handling
-        total_hours_items = "No data available."
+        total_hours_items = "ERROR:No data available."
 
     # Write the end of day data to the text file
     with open("./files/end_of_day.txt", "w") as eod_file:
@@ -191,3 +191,6 @@ def next_day():
 daily_operations()
 next_day()
 
+# TODO: add in loop to continue operations till operator says no
+# TODO: add up operator totals - make read file an int
+# TODO: create word doc for variables/functions etc
