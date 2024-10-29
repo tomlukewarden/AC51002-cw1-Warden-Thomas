@@ -2,11 +2,12 @@ import random
 import time
 from staff import StaffData
 
+
 # Start daily production
 def daily_operations():
     # Input the operator's name
     name = input("Enter your Name: ")
-    
+
     # Define available operators with initial data
     operators = {
         "Obi": StaffData("Obi", 1000, 0, 0),
@@ -21,118 +22,166 @@ def daily_operations():
         print("This is the correct Operator Name")
     else:
         print("Operator Name is not recognized, please try again")
-        # Restart the process if the name is not recognized
-        daily_operations()
-    
+        daily_operations()  # Restart the process if the name is not recognized
+        return  # Exit the current function call to prevent further execution
+
     # Input the current day of the week
     day = input("What is the day today?: ")
-    if day not in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]:
+    if day.lower() not in [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+    ]:
         print("Please input the correct day of the week")
-        # Restart the process if the day is invalid
-        daily_operations()
+        daily_operations()  # Restart the process if the day is invalid
+        return  # Exit the current function call to prevent further execution
     else:
         print("Day has been set")
 
     # Read and display yesterday's report
-    with open("./files/end_of_day.txt", "r") as eod_file:
-        prev_report = eod_file.read()
-        print(f"Here's yesterday's report: {prev_report}")
+    try:
+        with open("./files/end_of_day.txt", "r") as eod_file:
+            prev_report = eod_file.read()
+            print(f"Here's yesterday's report: {prev_report}")
+    except FileNotFoundError:
+        print("No previous report found.")
+
+    # Function to prompt the operator to start production
     def production_start():
-# Function to prompt the operator to start production.
-        start = input(f"Welcome Back {name}! Would you like to start the production for today? (Yes/No) \n ")
-        if start.lower() in ["yes", "y"]:
-            print("Production has begun.")
+        start = input(
+            f"Welcome Back {name}! Would you like to start the production for today? (Yes/No): "
+        ).lower()
+        if start in ["yes", "y"]:
+            print("Production has begun. \n")
             return True
-        elif start.lower() in ["no", "n"]:
-            print("Production will not start.")
+        elif start in ["no", "n"]:
+            print("Please begin production when you are ready.")
             return False
         else:
-            print("This is not the correct input. Please input Yes or No.")
+            print("ERROR:This is not the correct input. Please input Yes or No.")
             return production_start()
 
+    # Start the production process if the operator confirms
     if production_start():
         working_hours = 0
         total_items_produced = 0
         service_item_list = []
-        for hour in range(9, 18):
 
-        # Simulate production for each hour
+        for hour in range(9, 18):
             if hour < 17:
+                # Simulate production for each hour
                 working_hours += 1
                 items_per_hour = random.randrange(75, 100)
                 total_items_produced += items_per_hour
                 service_item_list.append(items_per_hour)
-                print(f"Hour {working_hours} produced {items_per_hour} items \n")
-                time.sleep(3)
-                
-            # Perform maintenance if necessary
-            def maintenance():
+
+                print(f"Hour {working_hours} produced {items_per_hour} items.")
+                time.sleep(3)  # Simulate time between productions
+
+                # Perform maintenance every 4 hours
                 if working_hours % 4 == 0:
-                    print("Service Needed, maximum hours of operation has been reached")
-                    print("Here's your maintenance report:")
-                    
-                    # Calculate items produced in the last 4 hours
-                    print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.")
-                    
-                    
-                    # Write the maintenance report to a file
-                    with open("./files/service_report.txt", "w") as service_file:
-                        service_file.write(f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n")
-                    
-                    # Simulate maintenance time
-                    print("Shutting down for maintenance...")
-                    time.sleep(10)
-                    print("Maintenance has been completed")
-                    print("Resuming production...")
-            maintenance_performed = True
-            # Reset the maintenance flag after 4-hour block has completed
-            if working_hours % 4 == 0 and maintenance_performed:
-                maintenance_performed = False
-            maintenance()
-    
+                    perform_maintenance(service_item_list)
+
+        # Store the production data
+        store_data(selected_operator, day, working_hours, total_items_produced)
+
+        # End-of-day tasks
+        end_of_day(name, day, selected_operator)
+
     else:
-        print("Daily productions have not started yet")
+        production_start()
 
-    def storeData():
-        selected_operator.hours_worked += working_hours
-        selected_operator.items_produced += total_items_produced
 
-        file_path = f"./files/operators/{selected_operator.name.lower()}_data.txt"
-        with open(file_path, "a") as operator_file:
-            operator_file.write(f'{day}: Hours Worked: {selected_operator.hours_worked}, Items Produced: {selected_operator.items_produced},\n')
-        print("Data has been stored successfully!")
-            
-    def end_of_day():
-        # Read the total operating hours and items produced from the hours file
+def perform_maintenance(service_item_list):
+    print("\nService Needed, maximum hours of operation has been reached")
+    # Display the total number of items produced in the last 4 hours
+    print("Here's your maintenance report:")
+    print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.\n")
+
+    # Write this to the text file
+    with open("./files/service_report.txt", "w") as service_file:
+        service_file.write(
+            f"Over 4 hours, we have produced {sum(service_item_list[-4:])} items.\n"
+        )
+
+    # Simulate maintenance
+    print("Shutting down for maintenance...")
+    time.sleep(10)
+    print("Maintenance has been completed.")
+    print("Resuming production in 3 seconds...\n")
+    time.sleep(1)
+    print("Resuming production in 2 seconds...\n")
+    time.sleep(1)
+    print("Resuming production in 1 second...\n")
+    time.sleep(1)
+    print("Production has resumed.\n")
+
+
+# Store the production data of each operator
+def store_data(operator, day, hours_worked, items_produced):
+    operator.hours_worked += hours_worked
+    operator.items_produced += items_produced
+
+    # Create file path for quickness
+    file_path = f"./files/operators/{operator.name.lower()}_data.txt"  
+    # Use operator.name to use selected operator name for the file name
+
+    # Use append so I can continue to add to the file
+    with open(file_path, "a") as operator_file:
+        operator_file.write(
+            f"{day}: Hours Worked: {operator.hours_worked}, Items Produced: {operator.items_produced}\n"
+        )
+        print("Data has been stored successfully!\n")
+
+# End-of-day 'tasks'
+def end_of_day(name, day, operator):
+    try:
         with open("./files/hours.txt", "r") as hours_file:
+            # Read the last line of the file and create a list with the content
             lines = hours_file.readlines()
-            total_hours_items = lines[-1]  # Access the last line (final hour and item)
+            # Find the final line of the file
+            total_hours_items = lines[-1] if lines else "No data available."
+    except FileNotFoundError: # Error handling
+        total_hours_items = "No data available."
 
-        # Write the end-of-day summary to a file
-        with open("./files/end_of_day.txt", "w") as eod_file:
-            eod_file.write(f"{name}\n")
-            eod_file.write(f"{day}\n")
-            eod_file.write(f"{total_hours_items}\n")
+    # Write the end of day data to the text file
+    with open("./files/end_of_day.txt", "w") as eod_file:
+        eod_file.write(f"{name}\n")
+        eod_file.write(f"{day}\n")
+        eod_file.write(f"{total_hours_items}\n")
 
-        # Prompt the operator to perform end-of-day tasks
-        end = input(f"Good afternoon {name}! Are you ready to perform the end of day tasks? ")
-        if end.lower() in ["yes", "y"]:
-            print("Great, here is your final Report: ")
-            print(f"Operator Name: {name}")
-            print(f"Date: {day}")
-            print(total_hours_items)
-            storeData()  # Store the operator's data
-            print("Thanks for using our software!") 
-        else:
-            print("Okay, please come back when you are ready")
-    end_of_day()
+    end = input(
+        f"Good afternoon {name}! Thank you for your work today. Would you like to perform end-of-day tasks? (Yes/No): "
+    ).lower()
+    if end in ["yes", "y"]:
+        # Print the end of day report
+        print("Great, here is your final Report:\n")
+        print(f"Operator Name: {name}")
+        print(f"Operator ID: {operator.staff_id}")
+        print(f"Day: {day}")
+        print(total_hours_items)
+        print("Thanks for using our software!\n")
+    elif end in ["no", "n"]:
+        print("Software paused...")
+        end_of_day(name, day, operator)
+    else:
+        print("ERROR: This is not the correct input. Please input Yes or No.")
+        end_of_day(name, day, operator)
 
+
+# Start the operations
 daily_operations()
 
-
-next_day = input("Are you happy to move on to the next daily operations? ")
-if next_day.lower() in ["yes", "y"]:
+# Prompt for next day
+next_day = input(
+    "Are you happy to move on to the next daily operations? (Yes/No): "
+).lower()
+if next_day in ["yes", "y"]:
     daily_operations()
 else:
+    print("Exiting software...")
     exit()
-
