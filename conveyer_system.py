@@ -46,7 +46,7 @@ def daily_operations():
     try:
         with open("./files/end_of_day.txt", "r") as eod_file:
             prev_report = eod_file.read()
-            print(f"Here's yesterday's report: {prev_report}")
+            print(f"Here's the previous report: {prev_report}")
     except FileNotFoundError:
         print("No previous report found.")
 
@@ -67,10 +67,13 @@ def daily_operations():
 
     # Start the production process if the operator confirms
     if production_start():
+        # Define hours, items produced, and service item list
         working_hours = 0
         total_items_produced = 0
         service_item_list = []
-
+        # These reset each day
+        
+        # Loop through each hour of the day
         for hour in range(9, 18):
             if hour < 17:
                 # Simulate production for each hour
@@ -97,7 +100,7 @@ def daily_operations():
 
 
 def perform_maintenance(service_item_list):
-    print("\nService Needed, maximum hours of operation has been reached")
+    print("\n WARNING: Service Needed, maximum hours of operation has been reached :WARNING")
     # Display the total number of items produced in the last 4 hours
     print("Here's your maintenance report:")
     print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.\n")
@@ -109,7 +112,7 @@ def perform_maintenance(service_item_list):
         )
 
     # Simulate maintenance
-    print("Shutting down for maintenance...")
+    print("Shutting down for maintenance in 10 seconds...")
     time.sleep(10)
     print("Maintenance has been completed.")
     print("Resuming production in 3 seconds...\n")
@@ -165,23 +168,26 @@ def end_of_day(name, day, operator):
         print(f"Day: {day}")
         print(total_hours_items)
         print("Thanks for using our software!\n")
+        next_day()
     elif end in ["no", "n"]:
         print("Software paused...")
         end_of_day(name, day, operator)
     else:
         print("ERROR: This is not the correct input. Please input Yes or No.")
         end_of_day(name, day, operator)
-
+        
+# Prompt for next day
+def next_day():
+    next_day_op = input(
+    "Are you happy to move on to the next daily operations? (Yes/No): "
+    ).lower()
+    if next_day_op in ["yes", "y"]:
+        daily_operations()
+    else:
+        print("Exiting software...")
+        exit()
 
 # Start the operations
 daily_operations()
+next_day()
 
-# Prompt for next day
-next_day = input(
-    "Are you happy to move on to the next daily operations? (Yes/No): "
-).lower()
-if next_day in ["yes", "y"]:
-    daily_operations()
-else:
-    print("Exiting software...")
-    exit()
