@@ -4,6 +4,7 @@ from staff import StaffData
 
 
 # Start daily production
+
 def daily_operations():
     # Input the operator's name
     name = input("Enter your Name: ")
@@ -183,14 +184,20 @@ def next_day():
     ).lower()
     if next_day_op in ["yes", "y"]:
         daily_operations()
-    else:
+        return True
+    elif next_day_op in ["no", "n"]:
         print("Exiting software...")
         exit()
+        return False
+    else:
+        print("ERROR: This is not the correct input. Please input Yes or No.")
+        next_day()
 
 # Start the operations
 daily_operations()
-next_day()
 
-# TODO: add in loop to continue operations till operator says no
+while next_day():
+    daily_operations()
+
 # TODO: add up operator totals - make read file an int
 # TODO: create word doc for variables/functions etc

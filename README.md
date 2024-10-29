@@ -54,9 +54,9 @@ DundeeZest has tasked you with developing a **prototype Python software system**
 10. Assume that the conveyor belt will be used by 4 operators and only one of them operates it per
     day. Your software should keep track of the number of items produced by each operator and
     display their individual totals at the point of maintenance along with the other data in
-    requirement 8 above.
+    requirement 8 above.[X]
 11. Update requirement 8 above so that the information is displayed for exactly 10 seconds before
-    the system shuts down for maintenance.
+    the system shuts down for maintenance.[X]
 
 **Task A**: Write a Python program that meets the above requirements for the conveyor belt system.
 **Task B**: Briefly describe each variable and function you have used in one sentence. The descriptions can
