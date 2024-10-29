@@ -142,7 +142,7 @@ def store_data(operator, day, hours_worked, items_produced):
         )
         print("Data has been stored successfully!\n")
 
-
+    
 # End-of-day 'tasks'
 def end_of_day(name, day, operator):
     try:

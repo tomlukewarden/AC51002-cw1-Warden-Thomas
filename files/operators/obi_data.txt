@@ -1,4 +1,0 @@
-monday: Hours Worked: 8, Items Produced: 695
-monday: Hours Worked: 8, Items Produced: 711
-monday: Hours Worked: 8, Items Produced: 679
-tuesday: Hours Worked: 8, Items Produced: 691
