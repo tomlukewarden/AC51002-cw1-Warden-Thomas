@@ -4,7 +4,6 @@ from staff import StaffData
 
 
 # Start daily production
-
 def daily_operations():
     # Input the operator's name
     name = input("Enter your Name: ")
@@ -73,7 +72,7 @@ def daily_operations():
         total_items_produced = 0
         service_item_list = []
         # These reset each day
-        
+
         # Loop through each hour of the day
         for hour in range(9, 18):
             if hour < 17:
@@ -101,7 +100,9 @@ def daily_operations():
 
 
 def perform_maintenance(service_item_list):
-    print("\n WARNING: Service Needed, maximum hours of operation has been reached :WARNING")
+    print(
+        "\n WARNING: Service Needed, maximum hours of operation has been reached :WARNING"
+    )
     # Display the total number of items produced in the last 4 hours
     print("Here's your maintenance report:")
     print(f"Over the last 4 hours, we produced {sum(service_item_list[-4:])} items.\n")
@@ -131,7 +132,7 @@ def store_data(operator, day, hours_worked, items_produced):
     operator.items_produced += items_produced
 
     # Create file path for quickness
-    file_path = f"./files/operators/{operator.name.lower()}_data.txt"  
+    file_path = f"./files/operators/{operator.name.lower()}_data.txt"
     # Use operator.name to use selected operator name for the file name
 
     # Use append so I can continue to add to the file
@@ -141,6 +142,7 @@ def store_data(operator, day, hours_worked, items_produced):
         )
         print("Data has been stored successfully!\n")
 
+
 # End-of-day 'tasks'
 def end_of_day(name, day, operator):
     try:
@@ -149,7 +151,7 @@ def end_of_day(name, day, operator):
             lines = hours_file.readlines()
             # Find the final line of the file
             total_hours_items = lines[-1] if lines else "No data available."
-    except FileNotFoundError: # Error handling
+    except FileNotFoundError:  # Error handling
         total_hours_items = "ERROR:No data available."
 
     # Write the end of day data to the text file
@@ -176,11 +178,12 @@ def end_of_day(name, day, operator):
     else:
         print("ERROR: This is not the correct input. Please input Yes or No.")
         end_of_day(name, day, operator)
-        
+
+
 # Prompt for next day
 def next_day():
     next_day_op = input(
-    "Are you happy to move on to the next daily operations? (Yes/No): "
+        "Are you happy to move on to the next daily operations? (Yes/No): "
     ).lower()
     if next_day_op in ["yes", "y"]:
         daily_operations()
@@ -192,6 +195,7 @@ def next_day():
     else:
         print("ERROR: This is not the correct input. Please input Yes or No.")
         next_day()
+
 
 # Start the operations
 daily_operations()
