@@ -5,6 +5,15 @@
 **Overview**  
 DundeeZest is a company providing affordable luxury wear for University of Dundee students. They are planning to upgrade their production line by implementing a conveyor belt system to improve efficiency.
 
+### Starting the System
+
+Starting the system will be self explanatory, the only thing you will need to know is the Operator Names (I used the members of my family):
+
+- 'Obi' (My Dog)
+- 'Arlo' (My Youngest Cat)
+- 'Lego' (My Eldest Cat)
+- 'Emma' (My Girlfriend)
+
 ### **System Operation**
 
 - **Operating Hours:** The conveyor belt system will run every day from **9 AM to 5 PM**.
@@ -54,9 +63,9 @@ DundeeZest has tasked you with developing a **prototype Python software system**
 10. Assume that the conveyor belt will be used by 4 operators and only one of them operates it per
     day. Your software should keep track of the number of items produced by each operator and
     display their individual totals at the point of maintenance along with the other data in
-    requirement 8 above.
+    requirement 8 above.[X]
 11. Update requirement 8 above so that the information is displayed for exactly 10 seconds before
-    the system shuts down for maintenance.
+    the system shuts down for maintenance.[X]
 
 **Task A**: Write a Python program that meets the above requirements for the conveyor belt system.
 **Task B**: Briefly describe each variable and function you have used in one sentence. The descriptions can
