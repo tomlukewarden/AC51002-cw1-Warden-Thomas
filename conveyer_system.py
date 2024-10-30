@@ -91,7 +91,7 @@ def daily_operations():
 
         # Store the production data
         store_data(selected_operator, day, working_hours, total_items_produced)
-
+        
         # End-of-day tasks
         end_of_day(name, day, selected_operator)
 
@@ -128,21 +128,39 @@ def perform_maintenance(service_item_list):
 
 # Store the production data of each operator
 def store_data(operator, day, hours_worked, items_produced):
+    # Update the operator's accumulated values
     operator.hours_worked += hours_worked
     operator.items_produced += items_produced
 
-    # Create file path for quickness
+    # Create the file path using the operator's name in lowercase
     file_path = f"./files/operators/{operator.name.lower()}_data.txt"
-    # Use operator.name to use selected operator name for the file name
 
-    # Use append so I can continue to add to the file
+    # Append the current day's work to the file
     with open(file_path, "a") as operator_file:
         operator_file.write(
-            f"{day}: Hours Worked: {operator.hours_worked}, Items Produced: {operator.items_produced}\n"
+            f"{day}: Hours Worked: {hours_worked}, Items Produced: {items_produced}\n"
         )
         print("Data has been stored successfully!\n")
 
-    
+    # Re-read the file to calculate total hours worked and items produced
+    total_hours = 0
+    total_items = 0
+    with open(file_path, "r") as operator_file:
+        for line in operator_file:
+            try:
+                # Extract the hours and items data from each line
+                hours = int(line.split("Hours Worked: ")[1].split(",")[0].strip())
+                items = int(line.split("Items Produced: ")[1].strip())
+                total_hours += hours
+                total_items += items
+            except (IndexError, ValueError):
+                print("Skipping malformed line:", line.strip())
+        if total_hours % 16 == 0:
+            with open(file_path, "a") as operator_file:
+                operator_file.write(f"Total Hours Worked: {total_hours}\n")
+                operator_file.write(f"Total Items Produced: {total_items}\n")
+        else:
+            pass
 # End-of-day 'tasks'
 def end_of_day(name, day, operator):
     try:
@@ -152,7 +170,7 @@ def end_of_day(name, day, operator):
             # Find the final line of the file
             total_hours_items = lines[-1] if lines else "No data available."
     except FileNotFoundError:  # Error handling
-        total_hours_items = "ERROR:No data available."
+        total_hours_items = "ERROR: No data available."
 
     # Write the end of day data to the text file
     with open("./files/end_of_day.txt", "w") as eod_file:

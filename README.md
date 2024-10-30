@@ -5,6 +5,15 @@
 **Overview**  
 DundeeZest is a company providing affordable luxury wear for University of Dundee students. They are planning to upgrade their production line by implementing a conveyor belt system to improve efficiency.
 
+### Starting the System
+
+Starting the system will be self explanatory, the only thing you will need to know is the Operator Names (I used the members of my family):
+
+- 'Obi' (My Dog)
+- 'Arlo' (My Youngest Cat)
+- 'Lego' (My Eldest Cat)
+- 'Emma' (My Girlfriend)
+
 ### **System Operation**
 
 - **Operating Hours:** The conveyor belt system will run every day from **9 AM to 5 PM**.
