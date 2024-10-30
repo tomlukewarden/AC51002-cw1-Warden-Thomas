@@ -200,13 +200,13 @@ def end_of_day(name, day, operator):
 
 # Prompt for next day
 def next_day():
-    next_day_op = input(
+    next_day_prod = input(
         "Are you happy to move on to the next daily operations? (Yes/No): "
     ).lower()
-    if next_day_op in ["yes", "y"]:
+    if next_day_prod in ["yes", "y"]:
         daily_operations()
         return True
-    elif next_day_op in ["no", "n"]:
+    elif next_day_prod in ["no", "n"]:
         print("Exiting software...")
         exit()
         return False
@@ -220,6 +220,3 @@ daily_operations()
 
 while next_day():
     daily_operations()
-
-# TODO: add up operator totals - make read file an int
-# TODO: create word doc for variables/functions etc
