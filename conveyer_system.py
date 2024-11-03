@@ -49,7 +49,9 @@ def daily_operations():
             print(f"Here's the previous report: {prev_report}")
     except FileNotFoundError:
         print("ERROR: No previous report found.")
-
+        
+    if prev_report == '':
+        print("ERROR: No previous report found.")
     # Function to prompt the operator to start production
     def production_start():
         start = input(
