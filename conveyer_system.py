@@ -136,6 +136,25 @@ def store_data(operator, day, hours_worked, items_produced):
             f"{day}: Hours Worked: {operator.hours_worked}, Items Produced: {operator.items_produced}\n"
         )
         print("Data has been stored successfully!\n")
+        # Re-read the file to calculate total hours worked and items produced
+    total_hours = 0
+    total_items = 0
+    with open(file_path, "r") as operator_file:
+        for line in operator_file:
+            try:
+                # Extract the hours and items data from each line
+                hours = int(line.split("Hours Worked: ")[1].split(",")[0].strip())
+                items = int(line.split("Items Produced: ")[1].strip())
+                total_hours += hours
+                total_items += items
+            except (IndexError, ValueError):
+                print("Skipping malformed line:", line.strip())
+        if total_hours % 16 == 0:
+            with open(file_path, "a") as operator_file:
+                operator_file.write(f"Total Hours Worked: {total_hours}\n")
+                operator_file.write(f"Total Items Produced: {total_items}\n")
+        else:
+            pass
 
 # End-of-day 'tasks'
 def end_of_day(name, day, operator):

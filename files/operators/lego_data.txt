@@ -1,0 +1,4 @@
+tuesday: Hours Worked: 8, Items Produced: 683
+wednesday: Hours Worked: 8, Items Produced: 708
+Total Hours Worked: 16
+Total Items Produced: 1391
